@@ -47,7 +47,19 @@ export class RegisterComponent implements OnInit {
           }, 2000);
         },
         error: err => {
-          this.errorMessage = err.error || 'Ocurrió un error al registrarse. Intenta de nuevo.';
+          // Manejo mejorado de errores
+          if (err.error && typeof err.error === 'object') {
+            // Si el backend devuelve un objeto con mensaje
+            this.errorMessage = err.error.message || 'Ocurrió un error al registrarse. Intenta de nuevo.';
+          } else if (typeof err.error === 'string') {
+            // Si el backend devuelve un string
+            this.errorMessage = err.error;
+          } else if (err.status === 0) {
+            // Error de red o CORS
+            this.errorMessage = 'No se pudo conectar con el servidor. Verifica tu conexión o contacta al administrador.';
+          } else {
+            this.errorMessage = 'Ocurrió un error al registrarse. Intenta de nuevo.';
+          }
           console.error('Error de registro', err);
         }
       });

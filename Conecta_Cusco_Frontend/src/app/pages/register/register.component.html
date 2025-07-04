@@ -1,0 +1,49 @@
+<section>
+  <h2>Registrarse</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label for="nombreUsuario">Usuario:</label>
+    <input type="text" id="nombreUsuario" formControlName="nombreUsuario" required>
+    <div *ngIf="registerForm.controls['nombreUsuario'].invalid && registerForm.controls['nombreUsuario'].touched" class="error-message">
+      El usuario es requerido.
+    </div>
+
+    <label for="email">Correo Electrónico:</label>
+    <input type="email" id="email" formControlName="email" required>
+    <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched" class="error-message">
+      El email es requerido y debe ser válido.
+    </div>
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena" formControlName="contrasena" required>
+    <div *ngIf="registerForm.controls['contrasena'].invalid && registerForm.controls['contrasena'].touched" class="error-message">
+      La contraseña es requerida.
+    </div>
+
+    <label for="nombreCompleto">Nombre Completo:</label>
+    <input type="text" id="nombreCompleto" formControlName="nombreCompleto">
+
+    <label for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" formControlName="telefono">
+
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" formControlName="direccion">
+
+    <label for="urlFotoPerfil">URL Foto de Perfil:</label>
+    <input type="text" id="urlFotoPerfil" formControlName="urlFotoPerfil">
+
+    <label for="rol">Tipo de Cuenta:</label>
+    <select id="rol" formControlName="rol" required>
+      <option value="">Selecciona un rol</option>
+      <option value="TRABAJADOR">Trabajador (Ofrece servicios)</option>
+      <option value="EMPLEADOR">Empleador (Busca servicios/Ofrece trabajos)</option>
+    </select>
+    <div *ngIf="registerForm.controls['rol'].invalid && registerForm.controls['rol'].touched" class="error-message">
+      El rol es requerido.
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</section>

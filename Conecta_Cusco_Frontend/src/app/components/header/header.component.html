@@ -1,0 +1,13 @@
+<header>
+    <h1>Conecta Cusco</h1>
+    <nav>
+        <ul>
+            <li><a routerLink="/inicio">Inicio</a></li>
+            <li><a routerLink="/buscar-servicios">Buscar Servicios</a></li>
+            <li *ngIf="isLoggedIn$ | async"><a routerLink="/publicar-servicio">Publicar Servicio</a></li>
+            <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/login">Iniciar Sesión</a></li>
+            <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/registro">Registrarse</a></li>
+            <li *ngIf="isLoggedIn$ | async"><a (click)="logout()">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</header>

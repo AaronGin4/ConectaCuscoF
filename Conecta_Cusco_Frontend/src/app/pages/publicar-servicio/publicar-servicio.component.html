@@ -1,0 +1,53 @@
+<section>
+  <h2>Publicar un Servicio o una Oferta de Trabajo</h2>
+  <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()">
+    <label for="tipoPublicacion">Tipo de Publicación:</label>
+    <select id="tipoPublicacion" formControlName="tipoPublicacion" (change)="onTipoPublicacionChange()" required>
+      <option value="">Selecciona el tipo</option>
+      <option value="servicio">Ofrezco un Servicio</option>
+      <option value="oferta">Busco un Servicio (Oferta de Trabajo)</option>
+    </select>
+    <div *ngIf="publicacionForm.controls['tipoPublicacion'].invalid && publicacionForm.controls['tipoPublicacion'].touched" class="error-message">
+      El tipo de publicación es requerido.
+    </div>
+
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" formControlName="titulo" required>
+    <div *ngIf="publicacionForm.controls['titulo'].invalid && publicacionForm.controls['titulo'].touched" class="error-message">
+      El título es requerido.
+    </div>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" formControlName="descripcion" rows="5" required></textarea>
+    <div *ngIf="publicacionForm.controls['descripcion'].invalid && publicacionForm.controls['descripcion'].touched" class="error-message">
+      La descripción es requerida.
+    </div>
+
+    <label for="categoria">Categoría:</label>
+    <select id="categoria" formControlName="categoria" required>
+      <option value="">Selecciona una categoría</option>
+      <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
+    </select>
+    <div *ngIf="publicacionForm.controls['categoria'].invalid && publicacionForm.controls['categoria'].touched" class="error-message">
+      La categoría es requerida.
+    </div>
+
+    <label for="ubicacion">Ubicación (Opcional):</label>
+    <input type="text" id="ubicacion" formControlName="ubicacion">
+
+    <ng-container *ngIf="publicacionForm.get('tipoPublicacion')?.value === 'servicio'">
+      <label for="precio">Precio (por hora/servicio, opcional):</label>
+      <input type="number" id="precio" formControlName="precio">
+    </ng-container>
+
+    <ng-container *ngIf="publicacionForm.get('tipoPublicacion')?.value === 'oferta'">
+      <label for="presupuesto">Presupuesto (Opcional):</label>
+      <input type="number" id="presupuesto" formControlName="presupuesto">
+    </ng-container>
+
+    <button type="submit" [disabled]="publicacionForm.invalid">Publicar</button>
+
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</section>

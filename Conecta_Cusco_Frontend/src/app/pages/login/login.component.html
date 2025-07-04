@@ -1,21 +1,27 @@
-<section>
-  <h2>Iniciar Sesión</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <label for="nombreUsuario">Usuario:</label>
-    <input type="text" id="nombreUsuario" formControlName="nombreUsuario" required>
-    <div *ngIf="loginForm.controls['nombreUsuario'].invalid && loginForm.controls['nombreUsuario'].touched" class="error-message">
-      El usuario es requerido.
-    </div>
+<section class="login-container">
+  <div class="login-card">
+    <h2>Iniciar Sesión</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombreUsuario">Usuario</label>
+        <input type="text" id="nombreUsuario" formControlName="nombreUsuario" required placeholder="Ingresa tu usuario">
+        <div *ngIf="loginForm.controls['nombreUsuario'].invalid && loginForm.controls['nombreUsuario'].touched" class="error-message">
+          El usuario es requerido.
+        </div>
+      </div>
 
-    <label for="contrasena">Contraseña:</label>
-    <input type="password" id="contrasena" formControlName="contrasena" required>
-    <div *ngIf="loginForm.controls['contrasena'].invalid && loginForm.controls['contrasena'].touched" class="error-message">
-      La contraseña es requerida.
-    </div>
+      <div class="form-group">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" formControlName="contrasena" required placeholder="Ingresa tu contraseña">
+        <div *ngIf="loginForm.controls['contrasena'].invalid && loginForm.controls['contrasena'].touched" class="error-message">
+          La contraseña es requerida.
+        </div>
+      </div>
 
-    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+      <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
 
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-  </form>
-  <p>¿No tienes cuenta? <a routerLink="/registro">Regístrate aquí</a></p>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </form>
+    <p class="register-link">¿No tienes cuenta? <a routerLink="/registro">Regístrate aquí</a></p>
+  </div>
 </section>

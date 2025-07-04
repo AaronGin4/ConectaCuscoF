@@ -1,53 +1,71 @@
-<section>
-  <h2>Publicar un Servicio o una Oferta de Trabajo</h2>
-  <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()">
-    <label for="tipoPublicacion">Tipo de Publicación:</label>
-    <select id="tipoPublicacion" formControlName="tipoPublicacion" (change)="onTipoPublicacionChange()" required>
-      <option value="">Selecciona el tipo</option>
-      <option value="servicio">Ofrezco un Servicio</option>
-      <option value="oferta">Busco un Servicio (Oferta de Trabajo)</option>
-    </select>
-    <div *ngIf="publicacionForm.controls['tipoPublicacion'].invalid && publicacionForm.controls['tipoPublicacion'].touched" class="error-message">
-      El tipo de publicación es requerido.
-    </div>
+<main>
+  <section class="publish-container">
+    <header>
+      <h2>Publicar un Servicio o una Oferta de Trabajo</h2>
+    </header>
+    <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="tipoPublicacion">Tipo de Publicación</label>
+        <select id="tipoPublicacion" formControlName="tipoPublicacion" (change)="onTipoPublicacionChange()" required>
+          <option value="">Selecciona el tipo</option>
+          <option value="servicio">Ofrezco un Servicio</option>
+          <option value="oferta">Busco un Servicio (Oferta de Trabajo)</option>
+        </select>
+        <div *ngIf="publicacionForm.controls['tipoPublicacion'].invalid && publicacionForm.controls['tipoPublicacion'].touched" class="error-message">
+          El tipo de publicación es requerido.
+        </div>
+      </div>
 
-    <label for="titulo">Título:</label>
-    <input type="text" id="titulo" formControlName="titulo" required>
-    <div *ngIf="publicacionForm.controls['titulo'].invalid && publicacionForm.controls['titulo'].touched" class="error-message">
-      El título es requerido.
-    </div>
+      <div class="form-group">
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" formControlName="titulo" required placeholder="Título de tu publicación">
+        <div *ngIf="publicacionForm.controls['titulo'].invalid && publicacionForm.controls['titulo'].touched" class="error-message">
+          El título es requerido.
+        </div>
+      </div>
 
-    <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" formControlName="descripcion" rows="5" required></textarea>
-    <div *ngIf="publicacionForm.controls['descripcion'].invalid && publicacionForm.controls['descripcion'].touched" class="error-message">
-      La descripción es requerida.
-    </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" formControlName="descripcion" rows="5" required placeholder="Describe detalladamente tu servicio o lo que buscas"></textarea>
+        <div *ngIf="publicacionForm.controls['descripcion'].invalid && publicacionForm.controls['descripcion'].touched" class="error-message">
+          La descripción es requerida.
+        </div>
+      </div>
 
-    <label for="categoria">Categoría:</label>
-    <select id="categoria" formControlName="categoria" required>
-      <option value="">Selecciona una categoría</option>
-      <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
-    </select>
-    <div *ngIf="publicacionForm.controls['categoria'].invalid && publicacionForm.controls['categoria'].touched" class="error-message">
-      La categoría es requerida.
-    </div>
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" formControlName="categoria" required>
+          <option value="">Selecciona una categoría</option>
+          <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
+        </select>
+        <div *ngIf="publicacionForm.controls['categoria'].invalid && publicacionForm.controls['categoria'].touched" class="error-message">
+          La categoría es requerida.
+        </div>
+      </div>
 
-    <label for="ubicacion">Ubicación (Opcional):</label>
-    <input type="text" id="ubicacion" formControlName="ubicacion">
+      <div class="form-group">
+        <label for="ubicacion">Ubicación (Opcional)</label>
+        <input type="text" id="ubicacion" formControlName="ubicacion" placeholder="Ubicación donde ofreces/buscas el servicio">
+      </div>
 
-    <ng-container *ngIf="publicacionForm.get('tipoPublicacion')?.value === 'servicio'">
-      <label for="precio">Precio (por hora/servicio, opcional):</label>
-      <input type="number" id="precio" formControlName="precio">
-    </ng-container>
+      <ng-container *ngIf="publicacionForm.get('tipoPublicacion')?.value === 'servicio'">
+        <div class="form-group">
+          <label for="precio">Precio (por hora/servicio, opcional)</label>
+          <input type="number" id="precio" formControlName="precio" placeholder="Precio en soles">
+        </div>
+      </ng-container>
 
-    <ng-container *ngIf="publicacionForm.get('tipoPublicacion')?.value === 'oferta'">
-      <label for="presupuesto">Presupuesto (Opcional):</label>
-      <input type="number" id="presupuesto" formControlName="presupuesto">
-    </ng-container>
+      <ng-container *ngIf="publicacionForm.get('tipoPublicacion')?.value === 'oferta'">
+        <div class="form-group">
+          <label for="presupuesto">Presupuesto (Opcional)</label>
+          <input type="number" id="presupuesto" formControlName="presupuesto" placeholder="Presupuesto en soles">
+        </div>
+      </ng-container>
 
-    <button type="submit" [disabled]="publicacionForm.invalid">Publicar</button>
+      <button type="submit" [disabled]="publicacionForm.invalid">Publicar</button>
 
-    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-  </form>
-</section>
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </form>
+  </section>
+</main>

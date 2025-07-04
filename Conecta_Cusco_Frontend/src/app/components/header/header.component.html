@@ -1,13 +1,17 @@
-<header>
-    <h1>Conecta Cusco</h1>
-    <nav>
-        <ul>
-            <li><a routerLink="/inicio">Inicio</a></li>
-            <li><a routerLink="/buscar-servicios">Buscar Servicios</a></li>
-            <li *ngIf="isLoggedIn$ | async"><a routerLink="/publicar-servicio">Publicar Servicio</a></li>
-            <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/login">Iniciar Sesión</a></li>
-            <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/registro">Registrarse</a></li>
-            <li *ngIf="isLoggedIn$ | async"><a (click)="logout()">Cerrar Sesión</a></li>
-        </ul>
-    </nav>
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo-section">
+            <h1>Conecta Cusco</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                <li><a routerLink="/buscar-servicios" routerLinkActive="active">Buscar Servicios</a></li>
+                <li *ngIf="isLoggedIn$ | async"><a routerLink="/publicar-servicio" routerLinkActive="active">Publicar Servicio</a></li>
+                <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/login" routerLinkActive="active">Iniciar Sesión</a></li>
+                <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/registro" routerLinkActive="active">Registrarse</a></li>
+                <li *ngIf="isLoggedIn$ | async"><a (click)="logout()" class="logout-btn">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>

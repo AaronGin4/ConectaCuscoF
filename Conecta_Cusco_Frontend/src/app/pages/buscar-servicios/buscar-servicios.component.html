@@ -1,41 +1,62 @@
-<section>
-  <h2>Buscar Servicios y Ofertas de Trabajo</h2>
-  <div class="search-controls">
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por título o descripción...">
-    <select [(ngModel)]="selectedCategory" (change)="search()">
-      <option value="">Todas las Categorías</option>
-      <option *ngFor="let cat of categorias" [value]="cat.nombre">{{ cat.nombre }}</option>
-    </select>
-    <button (click)="search()">Buscar</button>
-  </div>
+<main>
+  <section class="search-container">
+    <header>
+      <h2>Buscar Servicios y Ofertas de Trabajo</h2>
+    </header>
+    
+    <nav class="search-controls">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por título o descripción...">
+      <select [(ngModel)]="selectedCategory" (change)="search()">
+        <option value="">Todas las Categorías</option>
+        <option *ngFor="let cat of categorias" [value]="cat.nombre">{{ cat.nombre }}</option>
+      </select>
+      <button (click)="search()">Buscar</button>
+    </nav>
 
-  <h3>Servicios Ofrecidos:</h3>
-  <div class="publicacion-list">
-    <div *ngIf="servicios.length === 0 && !loadingServicios" class="no-results">No se encontraron servicios.</div>
-    <div *ngIf="loadingServicios" class="loading-message">Cargando servicios...</div>
-    <div *ngFor="let servicio of servicios" class="publicacion-card">
-      <h4>{{ servicio.titulo }}</h4>
-      <p>{{ servicio.descripcion }}</p>
-      <p><strong>Categoría:</strong> {{ servicio.categoria?.nombre }}</p>
-      <p *ngIf="servicio.precio"><strong>Precio:</strong> S/{{ servicio.precio | number:'1.2-2' }}</p>
-      <p *ngIf="servicio.ubicacion"><strong>Ubicación:</strong> {{ servicio.ubicacion }}</p>
-      <p class="meta">Publicado por: {{ servicio.usuario?.nombreCompleto || servicio.usuario?.nombreUsuario }} el {{ servicio.fechaPublicacion | date:'mediumDate' }}</p>
+    <article class="services-section">
+      <header>
+        <h3>Servicios Ofrecidos</h3>
+      </header>
+      <div class="publicacion-list">
+        <div *ngIf="servicios.length === 0 && !loadingServicios" class="no-results">No se encontraron servicios.</div>
+        <div *ngIf="loadingServicios" class="loading-message">Cargando servicios...</div>
+        <article *ngFor="let servicio of servicios" class="publicacion-card">
+          <header>
+            <h4>{{ servicio.titulo }}</h4>
+          </header>
+          <p>{{ servicio.descripcion }}</p>
+          <footer>
+            <p><strong>Categoría:</strong> {{ servicio.categoria?.nombre }}</p>
+            <p *ngIf="servicio.precio"><strong>Precio:</strong> S/{{ servicio.precio | number:'1.2-2' }}</p>
+            <p *ngIf="servicio.ubicacion"><strong>Ubicación:</strong> {{ servicio.ubicacion }}</p>
+            <p class="meta">Publicado por: {{ servicio.usuario?.nombreCompleto || servicio.usuario?.nombreUsuario }} el {{ servicio.fechaPublicacion | date:'mediumDate' }}</p>
+          </footer>
+        </article>
       </div>
-  </div>
+    </article>
 
-  <hr>
+    <hr>
 
-  <h3>Ofertas de Trabajo Publicadas:</h3>
-  <div class="publicacion-list">
-    <div *ngIf="ofertas.length === 0 && !loadingOfertas" class="no-results">No se encontraron ofertas de trabajo.</div>
-    <div *ngIf="loadingOfertas" class="loading-message">Cargando ofertas...</div>
-    <div *ngFor="let oferta of ofertas" class="publicacion-card">
-      <h4>{{ oferta.titulo }}</h4>
-      <p>{{ oferta.descripcion }}</p>
-      <p><strong>Categoría:</strong> {{ oferta.categoria?.nombre }}</p>
-      <p *ngIf="oferta.presupuesto"><strong>Presupuesto:</strong> S/{{ oferta.presupuesto | number:'1.2-2' }}</p>
-      <p *ngIf="oferta.ubicacion"><strong>Ubicación:</strong> {{ oferta.ubicacion }}</p>
-      <p class="meta">Publicado por: {{ oferta.usuario?.nombreCompleto || oferta.usuario?.nombreUsuario }} el {{ oferta.fechaPublicacion | date:'mediumDate' }}</p>
+    <article class="offers-section">
+      <header>
+        <h3>Ofertas de Trabajo Publicadas</h3>
+      </header>
+      <div class="publicacion-list">
+        <div *ngIf="ofertas.length === 0 && !loadingOfertas" class="no-results">No se encontraron ofertas de trabajo.</div>
+        <div *ngIf="loadingOfertas" class="loading-message">Cargando ofertas...</div>
+        <article *ngFor="let oferta of ofertas" class="publicacion-card">
+          <header>
+            <h4>{{ oferta.titulo }}</h4>
+          </header>
+          <p>{{ oferta.descripcion }}</p>
+          <footer>
+            <p><strong>Categoría:</strong> {{ oferta.categoria?.nombre }}</p>
+            <p *ngIf="oferta.presupuesto"><strong>Presupuesto:</strong> S/{{ oferta.presupuesto | number:'1.2-2' }}</p>
+            <p *ngIf="oferta.ubicacion"><strong>Ubicación:</strong> {{ oferta.ubicacion }}</p>
+            <p class="meta">Publicado por: {{ oferta.usuario?.nombreCompleto || oferta.usuario?.nombreUsuario }} el {{ oferta.fechaPublicacion | date:'mediumDate' }}</p>
+          </footer>
+        </article>
       </div>
-  </div>
-</section>
+    </article>
+  </section>
+</main>

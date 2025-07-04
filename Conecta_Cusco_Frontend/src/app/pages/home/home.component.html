@@ -1,30 +1,43 @@
-<section id="inicio">
-  <h2>Bienvenido a Conecta Cusco</h2>
-  <p>Conecta Cusco es tu plataforma para encontrar y ofrecer servicios en la región. Ya seas un trabajador calificado buscando oportunidades o necesites ayuda con tareas del hogar, fontanería, niñeras y más, ¡aquí es el lugar!</p>
-  <p>Explora los servicios disponibles o publica tus propias ofertas de trabajo o servicios.</p>
-  <button routerLink="/buscar-servicios">Explorar Servicios</button>
-  <button routerLink="/publicar-servicio">Ofrecer/Buscar Trabajo</button>
-</section>
+<main>
+  <section id="inicio" class="hero-section">
+    <header>
+      <h2>Bienvenido a Conecta Cusco</h2>
+    </header>
+    <p>Conecta Cusco es tu plataforma para encontrar y ofrecer servicios en la región. Ya seas un trabajador calificado buscando oportunidades o necesites ayuda con tareas del hogar, fontanería, niñeras y más, ¡aquí es el lugar!</p>
+    <p>Explora los servicios disponibles o publica tus propias ofertas de trabajo o servicios.</p>
+    <nav class="hero-actions">
+      <a routerLink="/buscar-servicios" class="btn-primary">Explorar Servicios</a>
+      <a routerLink="/publicar-servicio" class="btn-secondary">Ofrecer/Buscar Trabajo</a>
+    </nav>
+  </section>
 
-<section id="sobre">
-  <h2>Sobre Nosotros</h2>
-  <p>Conecta Cusco nació con la misión de facilitar la conexión entre profesionales locales y aquellos que necesitan sus habilidades. Creemos en el poder de la comunidad y en apoyar la economía local.</p>
-  <p>Nuestro objetivo es proporcionar una plataforma segura y eficiente para que todos puedan encontrar lo que buscan.</p>
-</section>
+  <section id="sobre" class="about-section">
+    <header>
+      <h2>Sobre Nosotros</h2>
+    </header>
+    <p>Conecta Cusco nació con la misión de facilitar la conexión entre profesionales locales y aquellos que necesitan sus habilidades. Creemos en el poder de la comunidad y en apoyar la economía local.</p>
+    <p>Nuestro objetivo es proporcionar una plataforma segura y eficiente para que todos puedan encontrar lo que buscan.</p>
+  </section>
 
-<section id="contacto">
-  <h2>Contacto</h2>
-  <p>Si tienes alguna pregunta o sugerencia, no dudes en contactarnos:</p>
-  <form>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required>
-
-    <label for="email">Correo:</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="mensaje">Mensaje:</label>
-    <textarea id="mensaje" name="mensaje" rows="5"></textarea>
-
-    <input type="submit" value="Enviar">
-  </form>
-</section>
+  <section id="contacto" class="contact-section">
+    <header>
+      <h2>Contacto</h2>
+    </header>
+    <p>Si tienes alguna pregunta o sugerencia, no dudes en contactarnos:</p>
+    <form>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Correo</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Enviar</button>
+    </form>
+  </section>
+</main>
